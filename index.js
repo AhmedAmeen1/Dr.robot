@@ -14,12 +14,13 @@ const PatientDis = require('./models/PatientDis');
 const DocPatient = require('./models/DocPatient');
 const DoctorsDep = require('./models/DoctorsDep');
 const compression = require('compression')
-
+const cors = require('cors')
 
 
 
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(compression());
 const PORT = 3000;
