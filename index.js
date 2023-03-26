@@ -16,7 +16,7 @@ const DoctorsDep = require('./models/DoctorsDep');
 const compression = require('compression')
 const cors = require('cors')
 
-
+const port = process.env.PORT || 3000;
 
 
 const app = express();
@@ -55,7 +55,7 @@ app.use((request,response)=>{
 
 
 sequelize.sync();
-app.listen(process.env.PORT , async ()=>{
-    await console.log(`Server is running at http://localhost:${process.env.PORT}`);
+app.listen(port , async ()=>{
+    await console.log(`Server is running at http://localhost:${port}`);
     await connectToDb();
 });
