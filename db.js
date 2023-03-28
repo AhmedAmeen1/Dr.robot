@@ -1,19 +1,13 @@
 const {Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize(
-    'hospital',
-    'drrobot1',
-    'Graduationproject1',{
-        dialect:'mysql',
-        host:'azuregradproject.mysql.database.azure.com',
-        dialectOptions: {
-            ssl: {
-              require: true,
-              rejectUnauthorized: false // only set to true if using a self-signed certificate
-            }
-          }
-        }
-);
+const sequelize = new Sequelize({
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DATABASE,
+    dialect: 'mysql',
+    port: process.env.DB_PORT,
+    host: process.env.DB_HOST,
+});
 
 const connectToDb = async ()=>{
     try{

@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const {sequelize,connectToDb} = require('./db');
 const body_parser = require('body-parser');
 const DoctorRoutes = require('./routes/doctors');
@@ -15,7 +16,7 @@ const DoctorsDep = require('./models/DoctorsDep');
 const compression = require('compression')
 const cors = require('cors')
 
-const port = process.env.PORT || 3000;
+const port =  3000 || process.env.PORT;
 
 
 const app = express();
