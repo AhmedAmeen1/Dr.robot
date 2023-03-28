@@ -1,11 +1,14 @@
 {
   "name": "expressjs_todo",
   "version": "1.0.0",
-  "description": "This is out first ExpressJS app",
+  "description": "This is our first ExpressJS app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
+  },
+  "engines": {
+    "node": "^18.15.0"
   },
   "keywords": [],
   "author": "",
