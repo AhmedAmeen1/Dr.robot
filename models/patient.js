@@ -1,6 +1,6 @@
 const {sequelize} = require('../db')
 const {DataTypes} = require('sequelize');
-const DocPatient = require('./DocPatient');
+const Appointment = require('./Appointment');
 
 const Patient = sequelize.define('patient',{
     id: {
@@ -23,6 +23,17 @@ const Patient = sequelize.define('patient',{
     password: DataTypes.TEXT,
     nationalnumber: DataTypes.INTEGER,
     address: DataTypes.TEXT,
+    medicalHistory: DataTypes.STRING,
+    bloodType: DataTypes.STRING,
+    BloodPressure: DataTypes.BOOLEAN,
+    Diabetes: DataTypes.BOOLEAN,
+    Allergic: DataTypes.BOOLEAN,
+    Surgery: DataTypes.BOOLEAN,
+    Cancer: DataTypes.BOOLEAN,
+    Pregnant: DataTypes.BOOLEAN,
+    Smoker: DataTypes.BOOLEAN,
+    temperature: DataTypes.INTEGER,
+    
     
 }, { timestamps: false }
  );
