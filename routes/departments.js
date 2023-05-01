@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Department = require('../models/Department');
 const Doctor = require('../models/doctor');
+const DoctorsDep = require('../models/DoctorsDep');
 
 
 
@@ -23,9 +24,7 @@ router.post('/', async (req, res) => {
 // READ all departments
 router.get('/', async (req, res) => {
   try {
-    const departments = await Department.findAll({
-      include: [{model:Doctor , attributes: ['name , specialization', 'phoneNo' ] }]
-    });
+    const departments = await Department.findAll();
     res.status(200).json(departments);
   } catch (err) {
     console.error(err);
@@ -36,15 +35,17 @@ router.get('/', async (req, res) => {
 // READ a single department by ID
 router.get('/:id', async (req, res) => {
   try {
-    const department = await Department.findByPk(req.params.id,{
-      include: [{model:Doctor , attributes: ['name , specialization', 'phoneNo' ] }]
-     }
-      );
-    
+    const {id} = req.params;
+    const department = await Department.findByPk(id);
+    const doctors = await DoctorsDep.findAll({where: {departmentId: id},
+       include:[
+        {model: Doctor,attributes: ['name', 'specialization' , 'phoneNo' ]}
+       ]
+      })
     if (!department) {
       return res.status(404).json({ message: 'Department not found' });
     }
-    res.status(200).json(department);
+    res.status(200).json({department , doctors});
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });

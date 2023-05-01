@@ -45,6 +45,9 @@ Appointment.belongsTo(Patient);
 Appointment.belongsTo(Doctor);
 Prescription.belongsTo(Patient);
 Prescription.belongsTo(Doctor);
+DoctorsDep.belongsTo(Doctor);
+Doctor.belongsTo(DoctorsDep);
+
 
 
 
