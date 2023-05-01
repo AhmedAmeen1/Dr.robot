@@ -6,13 +6,16 @@ const DoctorRoutes = require('./routes/doctors');
 const PatientsRoutes = require('./routes/patients');
 const DepartmentsRoutes = require('./routes/departments');
 const DiseasesRoutes = require('./routes/diseases');
+const AppointmentRoutes = require('./routes/appointments');
+const PrescriptionRoutes = require('./routes/prescriptions');
 const Department = require('./models/Department');
 const Disease = require('./models/Disease');
 const Doctor = require('./models/doctor');
 const Patient = require('./models/patient');
 const PatientDis = require('./models/PatientDis');
-const DocPatient = require('./models/DocPatient');
+const Appointment = require('./models/Appointment');
 const DoctorsDep = require('./models/DoctorsDep');
+const Prescription = require('./models/Prescription');
 const compression = require('compression')
 const cors = require('cors')
 
@@ -28,13 +31,23 @@ app.use('/api/doctors',DoctorRoutes);
 app.use('/api/patients',PatientsRoutes);
 app.use('/api/Departments',DepartmentsRoutes);
 app.use('/api/diseases',DiseasesRoutes);
+app.use('/api/appointments', AppointmentRoutes);
+app.use('/api/prescription', PrescriptionRoutes);
+
 
 Doctor.hasOne(Department, {through: DoctorsDep});
 Department.belongsToMany(Doctor, {through: DoctorsDep});
-Patient.belongsToMany(Doctor, {through: DocPatient});
-Doctor.belongsToMany(Patient, {through: DocPatient});
+Patient.belongsToMany(Doctor, {through: Appointment});
+Doctor.belongsToMany(Patient, {through: Appointment});
 Patient.belongsToMany(Disease, {through: PatientDis});
 Disease.belongsToMany(Patient, {through: PatientDis});
+Appointment.belongsTo(Patient);
+Appointment.belongsTo(Doctor);
+Prescription.belongsTo(Patient);
+Prescription.belongsTo(Doctor);
+
+
+
 
 
 app.get('/',(request,response)=>{
@@ -59,3 +72,4 @@ app.listen(port , async ()=>{
     await console.log(`Server is running at http://localhost:${port}`);
     await connectToDb();
 });
+
