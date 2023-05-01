@@ -74,6 +74,9 @@ router.delete('/:id', async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   });
+    router.get('/login', (req,res)=>{
+    res.send('Please type your Email and password')
+  });
 
 
   router.get('/:id/appointments', (req, res) => {

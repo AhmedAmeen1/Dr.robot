@@ -83,6 +83,9 @@ router.delete('/:id', async (req, res) => {
     });
   });
 
+   router.get('/login', (req,res)=>{
+    res.send('Please type your Email and password')
+  });
 
   router.get('/login', (req,res)=>{
     res.send('Please type your Email and password')
