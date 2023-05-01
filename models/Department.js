@@ -9,7 +9,6 @@ const Department = sequelize.define('departments',{
     },
     name: DataTypes.STRING,
     note: DataTypes.TEXT,
-    Description: DataTypes.TEXT,
 }, { timestamps: false }
 )
 
