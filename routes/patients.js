@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Doctor = require('../models/doctor');
 const Patient = require('../models/patient');
-const Appointment = require('../models/Appointment');
 
 router.get('/' , async (req,res)=>{
     const patients = await Patient.findAll({
-        include: [{model:Doctor, attributes:['name','specialization', 'phoneNo']}]
+        include: Doctor
     });
     res.json(patients);
 });
@@ -20,18 +19,7 @@ router.post('/' , async(req,res)=>{try {
         email: req.body.email,
         password: req.body.password,
         nationalnumber: req.body.nationalnumber,
-        address: req.body.address,
-        medicalHistory: req.body.medicalHistory,
-        bloodType: req.body.bloodType,
-        BloodPressure: req.body.BloodPressure,
-        Diabetes: req.body.Diabetes,
-        Allergic: req.body.Allergic,
-        Surgery: req.body.Surgery,
-        Cancer: req.body.Cancer,
-        Pregnant: req.body.Pregnant,
-        Smoker: req.body.Smoker,
-        temperature: req.body.temperature,
-    
+        address: req.body.address
     
     })
     res.json(newpatient)
@@ -74,35 +62,6 @@ router.delete('/:id', async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   });
-    router.get('/login', (req,res)=>{
-    res.send('Please type your Email and password')
-  });
-
-
-  router.get('/:id/appointments', (req, res) => {
-    Appointment.findAll({
-      where: {
-        patientId: req.params.id
-      },
-      include: [
-        { model: Patient,attributes:{exclude:['password', 'address']}},
-        { model: Doctor,attributes: ['name', 'specialization' , 'phoneNo' ]  }
-        ]
-    })
-    .then(appointments => {
-      res.json(appointments);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    });
-  });
-
-
-
-  router.get('/login', (req,res)=>{
-    res.send('Please type your Email and password')
-  });
-
 
   router.post('/login', async (req, res) => {
     const { email, password } = req.body;

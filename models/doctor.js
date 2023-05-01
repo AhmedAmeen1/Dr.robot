@@ -21,7 +21,7 @@ const Doctor = sequelize.define('doctor',{
     gender: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.TEXT,
-    specialization: DataTypes.STRING,
+
 }, { timestamps: false }
 )
 

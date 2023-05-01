@@ -2,13 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Doctor = require('../models/doctor');
 const Patient = require('../models/patient');
-const Appointment = require('../models/Appointment');
-
-
 
 router.get('/' , async (req,res)=>{
     const doctors = await Doctor.findAll({
-        include: [{model:Patient, attributes:{exclude:['password', 'address']}}]
+        include: Patient
     });
     res.json(doctors);
 });
@@ -21,7 +18,7 @@ router.post('/' , async(req,res)=>{try {
         gender: req.body.gender,
         email: req.body.email,
         password: req.body.password,
-        specialization: req.body.specialization,
+    
     })
     res.json(newdoctor)
 } catch (error) {
@@ -65,31 +62,7 @@ router.delete('/:id', async (req, res) => {
   });
 
 
-  router.get('/:id/appointments', (req, res) => {
-    Appointment.findAll({
-      where: {
-        doctorId: req.params.id
-      },
-      include: [
-        { model: Patient,attributes:{exclude:['password', 'address']}},
-        { model: Doctor,attributes: ['name', 'specialization' , 'phoneNo' ]  }
-      ]
-    })
-    .then(appointments => {
-      res.json(appointments);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    });
-  });
 
-   router.get('/login', (req,res)=>{
-    res.send('Please type your Email and password')
-  });
-
-  router.get('/login', (req,res)=>{
-    res.send('Please type your Email and password')
-  });
   router.post('/login', async (req, res) => {
     const { email, password } = req.body;
   
