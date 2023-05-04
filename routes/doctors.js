@@ -83,24 +83,20 @@ router.delete('/:id', async (req, res) => {
     });
   });
 
-
-  router.get('/login', (req,res)=>{
-    res.send('Please type your Email and password')
-  });
   router.post('/login', async (req, res) => {
     const { email, password } = req.body;
   
     const doctor = await Doctor.findOne({ where: { email } });
   
     if (!doctor) {
-      return res.status(401).send('Invalid username');
+      return res.status(401).json('Invalid username');
     }
   
     if (doctor.password !== password) {
-      return res.status(401).send('Invalid password');
+      return res.status(401).json('Invalid password');
     }
   
-    res.send('Logged in successfully');
+    res.json('Logged in successfully');
   });
 module.exports = router;
 

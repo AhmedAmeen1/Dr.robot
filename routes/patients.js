@@ -96,9 +96,6 @@ router.delete('/:id', async (req, res) => {
 
 
 
-  router.get('/login', (req,res)=>{
-    res.send('Please type your Email and password')
-  });
 
 
   router.post('/login', async (req, res) => {
@@ -107,14 +104,14 @@ router.delete('/:id', async (req, res) => {
     const user = await Patient.findOne({ where: { email } });
   
     if (!user) {
-      return res.status(401).send('Invalid username');
+      return res.status(401).json('Invalid username');
     }
   
     if (user.password !== password) {
-      return res.status(401).send('Invalid password');
+      return res.status(401).json('Invalid password');
     }
   
-    res.send('Logged in successfully');
+    res.json('Logged in successfully');
   });
 
 
