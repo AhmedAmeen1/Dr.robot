@@ -104,11 +104,11 @@ router.delete('/:id', async (req, res) => {
     const user = await Patient.findOne({ where: { email } });
   
     if (!user) {
-      return res.json('Invalid username');
+      return res.status(401).json('Invalid username');
     }
   
     if (user.password !== password) {
-      return res.json('Invalid password');
+      return res.status(401).json('Invalid password');
     }
   
     res.json('Logged in successfully');
