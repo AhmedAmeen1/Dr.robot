@@ -13,7 +13,7 @@ router.get('/' , async (req,res)=>{
     res.json(doctors);
 });
 
-router.post('/' , async(req,res)=>{try {
+router.post('/signup' , async(req,res)=>{try {
     const newdoctor = await Doctor.create({
         name: req.body.name,
         phoneNo: req.body.phoneNo,

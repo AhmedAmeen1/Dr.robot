@@ -11,7 +11,7 @@ router.get('/' , async (req,res)=>{
     res.json(patients);
 });
 
-router.post('/' , async(req,res)=>{try {
+router.post('/signup' , async(req,res)=>{try {
     const newpatient = await Patient.create({
         name: req.body.name,
         phoneNo: req.body.phoneNo,
