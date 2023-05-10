@@ -14,7 +14,8 @@ const Appointment = sequelize.define('Appointment',{
     },
     Specilization: {
         type: DataTypes.TEXT
-    }
+    },
+    type: DataTypes.STRING
 } , {timestamps:false }
 )
 

@@ -7,7 +7,7 @@ const Disease = sequelize.define('disease',{
         primaryKey: true,
         autoIncrement: true,
     },
-    note: DataTypes.TEXT,
+    name: DataTypes.STRING,
     Description: DataTypes.TEXT,
 }, { timestamps: false }
 )

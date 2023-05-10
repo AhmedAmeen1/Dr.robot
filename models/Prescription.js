@@ -12,6 +12,12 @@ const Prescription = sequelize.define('Prescription',{
     Advice: {
         type: DataTypes.TEXT,
     },
+    Dosage: DataTypes.STRING,
+    Duration: DataTypes.STRING,
+    Repeat: DataTypes.STRING,
+    Timeofday: DataTypes.STRING,
+    Taken: DataTypes.STRING,
+
 } , {timestamps:false }
 )
 

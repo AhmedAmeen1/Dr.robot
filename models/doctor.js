@@ -22,6 +22,9 @@ const Doctor = sequelize.define('doctor',{
     email: DataTypes.STRING,
     password: DataTypes.TEXT,
     specialization: DataTypes.STRING,
+    image: DataTypes.STRING,
+    rate: DataTypes.FLOAT,
+    fees: DataTypes.STRING
 }, { timestamps: false }
 )
 
