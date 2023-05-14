@@ -8,12 +8,14 @@ const DepartmentsRoutes = require('./routes/departments');
 const DiseasesRoutes = require('./routes/diseases');
 const AppointmentRoutes = require('./routes/appointments');
 const PrescriptionRoutes = require('./routes/prescriptions');
+const SymptomRoutes = require('./routes/symptoms');
 const Department = require('./models/Department');
 const Disease = require('./models/Disease');
 const Doctor = require('./models/doctor');
 const Patient = require('./models/patient');
 const PatientDis = require('./models/PatientDis');
 const Appointment = require('./models/Appointment');
+const Symptom = require('./models/Symptom');
 const DoctorsDep = require('./models/DoctorsDep');
 const Prescription = require('./models/Prescription');
 const compression = require('compression')
@@ -27,12 +29,16 @@ app.use(cors());
 app.use(express.json());
 app.use(compression());
 
+
+
 app.use('/api/doctors',DoctorRoutes);
 app.use('/api/patients',PatientsRoutes);
 app.use('/api/Departments',DepartmentsRoutes);
 app.use('/api/diseases',DiseasesRoutes);
 app.use('/api/appointments', AppointmentRoutes);
 app.use('/api/prescription', PrescriptionRoutes);
+app.use('/api/symptoms', SymptomRoutes);
+
 
 
 Doctor.hasOne(Department, {through: DoctorsDep});
