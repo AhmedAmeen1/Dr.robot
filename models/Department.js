@@ -7,7 +7,8 @@ const Department = sequelize.define('departments',{
         primaryKey: true,
         autoIncrement: true,
     },
-    name: DataTypes.STRING,
+    Ename: DataTypes.STRING,
+    Aname: DataTypes.STRING,
     note: DataTypes.TEXT,
 }, { timestamps: false }
 )

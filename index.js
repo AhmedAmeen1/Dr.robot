@@ -9,14 +9,17 @@ const DiseasesRoutes = require('./routes/diseases');
 const AppointmentRoutes = require('./routes/appointments');
 const PrescriptionRoutes = require('./routes/prescriptions');
 const SymptomRoutes = require('./routes/symptoms');
+const NurseRoutes = require('./routes/symptoms');
 const Department = require('./models/Department');
 const Disease = require('./models/Disease');
 const Doctor = require('./models/doctor');
 const Patient = require('./models/patient');
+const Nurse = require('./models/nurse');
 const PatientDis = require('./models/PatientDis');
 const Appointment = require('./models/Appointment');
 const Symptom = require('./models/Symptom');
 const DoctorsDep = require('./models/DoctorsDep');
+const Patientnurse = require('./models/Patientnurse');
 const Prescription = require('./models/Prescription');
 const compression = require('compression')
 const cors = require('cors')
@@ -38,6 +41,7 @@ app.use('/api/diseases',DiseasesRoutes);
 app.use('/api/appointments', AppointmentRoutes);
 app.use('/api/prescription', PrescriptionRoutes);
 app.use('/api/symptoms', SymptomRoutes);
+app.use('/api/nurses', NurseRoutes);
 
 
 
@@ -52,6 +56,9 @@ Appointment.belongsTo(Doctor);
 Prescription.belongsTo(Patient);
 Prescription.belongsTo(Doctor);
 DoctorsDep.belongsTo(Doctor);
+Patient.belongsToMany(Nurse, {through: Patientnurse});
+Nurse.belongsToMany(Patient, {through: Patientnurse});
+
 
 
 
