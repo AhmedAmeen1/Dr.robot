@@ -13,8 +13,8 @@ router.get('/' , async (req,res)=>{
 
 router.post('/signup' , async(req,res)=>{try {
     const newpatient = await Patient.create({
-        fname: req.body.name,
-        lname: req.body.name,
+        fname: req.body.fname,
+        lname: req.body.lname,
         phoneNo: req.body.phoneNo,
         age: req.body.age,
         gender: req.body.gender,

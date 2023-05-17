@@ -8,7 +8,13 @@ const Patient = sequelize.define('patient',{
         primaryKey: true,
         autoIncrement: true,
     },
-    name:{
+    fname:{
+        type:DataTypes.STRING,
+        validate:{
+            max:150
+        }
+    },
+    lname:{
         type:DataTypes.STRING,
         validate:{
             max:150
