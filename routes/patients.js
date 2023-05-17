@@ -13,7 +13,8 @@ router.get('/' , async (req,res)=>{
 
 router.post('/signup' , async(req,res)=>{try {
     const newpatient = await Patient.create({
-        name: req.body.name,
+        fname: req.body.name,
+        lname: req.body.name,
         phoneNo: req.body.phoneNo,
         age: req.body.age,
         gender: req.body.gender,
@@ -34,10 +35,10 @@ router.post('/signup' , async(req,res)=>{try {
     
     
     })
-    res.status(200).json(newpatient)
+    res.json(newpatient)
 } catch (error) {
     console.error(error);
-    res.status(500).json(`error:${error}`)
+    res.status(401).json(`error:${error}`)
 }
 
 });
