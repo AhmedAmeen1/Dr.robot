@@ -7,9 +7,7 @@ const Appointment = require('../models/Appointment');
 
 
 router.get('/' , async (req,res)=>{
-    const nurses = await Nurse.findAll({
-        include: [{model:Patient, attributes:{exclude:['password', 'address']}}]
-    });
+    const nurses = await Nurse.findAll();
     res.json(nurses);
 });
 
