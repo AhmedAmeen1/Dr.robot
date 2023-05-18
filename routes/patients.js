@@ -35,7 +35,7 @@ router.post('/signup' , async(req,res)=>{try {
     
     
     })
-    res.json(newpatient)
+    res.json("registration successful")
 } catch (error) {
     console.error(error);
     res.status(401).json(`error:${error}`)
