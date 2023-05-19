@@ -11,6 +11,14 @@ router.get('/' , async (req,res)=>{
     res.json(nurses);
 });
 
+
+
+router.get('/appointments' , async (req,res)=>{
+  const nurses = await Appointment.findAll({where: {Type: "online"}});
+  res.json(nurses);
+});
+
+
 router.post('/signup' , async(req,res)=>{try {
     const newnurse = await Nurse.create({
         name: req.body.name,
