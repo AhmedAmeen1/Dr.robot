@@ -84,7 +84,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(401).json('Invalid password');
     }
   
-    res.json(`Logged in successfully , your id is ${nurse.id}`);
+    res.json(nurse.id);
   });
 module.exports = router;
 
