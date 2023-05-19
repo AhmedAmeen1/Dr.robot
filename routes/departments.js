@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
     const department = await Department.findByPk(id);
     const doctors = await DoctorsDep.findAll({where: {departmentId: id},
        include:[
-        {model: Doctor}
+        {model: Doctor , attributes: {exclude:['password' , 'email']}}
        ]
       })
     if (!department) {

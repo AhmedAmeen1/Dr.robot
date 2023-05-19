@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     await  Appointment.findByPk(req.params.id, {
        include: [
         { model: Patient,attributes:{exclude:['password', 'address']}},
-        { model: Doctor,attributes: ['name', 'specialization' , 'phoneNo' ] }
+        { model: Doctor , attributes: {exclude:['password' , 'email']}}
     ]
      })
      .then(appointment => {
