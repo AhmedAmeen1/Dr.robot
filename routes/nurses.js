@@ -14,7 +14,7 @@ router.get('/' , async (req,res)=>{
 
 
 router.get('/appointments' , async (req,res)=>{
-  const nurses = await Appointment.findAll({where: {Type: "online"}});
+  const nurses = await Appointment.findAll({where: {Type: "offline"}});
   res.json(nurses);
 });
 
