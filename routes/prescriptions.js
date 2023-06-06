@@ -30,8 +30,11 @@ router.post('/', async (req, res) => {
         { model: Patient,attributes:{exclude:['password', 'address']}},
         { model: Doctor,attributes: ['name', 'specialization' , 'phoneNo' ]  }
         ]
-     })
-     res.json(Prescriptions);
+     }).then(prescriptions =>{
+      res.json(Prescriptions);
+     }).catch(err =>{
+      res.status(500).send(err);
+    })
    });
    
    // Get a specific Prescription by ID
