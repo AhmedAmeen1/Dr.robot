@@ -39,7 +39,7 @@ app.use('/api/patients',PatientsRoutes);
 app.use('/api/Departments',DepartmentsRoutes);
 app.use('/api/diseases',DiseasesRoutes);
 app.use('/api/appointments', AppointmentRoutes);
-app.use('/api/prescription', PrescriptionRoutes);
+app.use('/api/prescriptions', PrescriptionRoutes);
 app.use('/api/symptoms', SymptomRoutes);
 app.use('/api/nurses', NurseRoutes);
 

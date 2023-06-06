@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         { model: Doctor,attributes: ['name', 'specialization' , 'phoneNo' ]  }
         ]
      }).then(prescriptions =>{
-      res.json(Prescriptions);
+      res.json(prescriptions);
      }).catch(err =>{
       res.status(500).send(err);
     })
