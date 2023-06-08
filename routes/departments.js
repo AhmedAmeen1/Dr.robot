@@ -57,7 +57,7 @@ router.put('/:id', async (req, res) => {
   try {
     const department = await Department.findByPk(req.params.id);
     if (!department) {
-      return res.status(404).json({ message: 'Department not found' });
+      return res.status(404).json({ message: 'Department is not found' });
     }
     await department.update(req.body);
     res.status(200).json(department);
