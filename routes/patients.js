@@ -3,7 +3,7 @@ const router = express.Router();
 const Doctor = require('../models/doctor');
 const Patient = require('../models/patient');
 const Appointment = require('../models/Appointment');
-
+const Prescription = require('../models/Prescription')
 router.get('/' , async (req,res)=>{
     const patients = await Patient.findAll({
         include: [{model:Doctor, attributes:['name','specialization', 'phoneNo']}]
@@ -77,8 +77,8 @@ router.delete('/:id', async (req, res) => {
   });
 
 
-  router.get('/:id/appointments', (req, res) => {
-    Appointment.findAll({
+  router.get('/:id/appointments', async (req, res) => {
+   await Appointment.findAll({
       where: {
         patientId: req.params.id
       },
@@ -96,6 +96,17 @@ router.delete('/:id', async (req, res) => {
   });
 
 
+
+router.get('/:id/prescriptions', async (req,res)=>{
+  const patientId = req.params.id;
+  try {
+    const patient = await Patient.findByPk(patientId);
+    const PatientPrescription = await Prescription.findAll({where:{patientId:patient.id}});
+    res.status(200).json(PatientPrescription);
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
 
 
 
