@@ -7,10 +7,15 @@ const Appointment = require('../models/Appointment');
 
 
 router.get('/' , async (req,res)=>{
+  try {
     const doctors = await Doctor.findAll({
-        include: [{model:Patient, attributes:{exclude:['password', 'address']}}]
-    });
-    res.json(doctors);
+      include: [{model:Patient, attributes:{exclude:['password', 'address']}}]
+  });
+  res.status(200).json(doctors);
+
+  } catch (error) {
+    res.status(400).json(error)
+  }
 });
 
 router.post('/signup' , async(req,res)=>{try {
