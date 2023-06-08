@@ -7,7 +7,7 @@ const Prescription = require('../models/Prescription')
 router.get('/' , async (req,res)=>{
     const patients = await Patient.findAll({
         include: [{model:Doctor, attributes:['name','specialization', 'phoneNo']}]
-    });
+    }).then(pats =>{res.json(pats)}).catch(e =>{res.json(e)});
     res.json(patients);
 });
 
