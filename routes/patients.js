@@ -11,8 +11,7 @@ router.get('/', async (req, res) => {
     });
     res.json(patients);
   } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json(error);
   }
 });
 router.post('/signup' , async(req,res)=>{try {
