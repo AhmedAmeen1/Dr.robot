@@ -39,7 +39,11 @@ const Patient = sequelize.define('patient',{
     Pregnant: DataTypes.BOOLEAN,
     Smoker: DataTypes.BOOLEAN,
     temperature: DataTypes.INTEGER,
-    
+    X_Ray_done: DataTypes.BOOLEAN,
+    Analysis_done: DataTypes.BOOLEAN,
+    Medicine_done: DataTypes.BOOLEAN,
+    Serum_done: DataTypes.BOOLEAN,
+    Reviewed_devices: DataTypes.BOOLEAN,
     
 }, { timestamps: false }
  );
