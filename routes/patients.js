@@ -4,13 +4,17 @@ const Doctor = require('../models/doctor');
 const Patient = require('../models/patient');
 const Appointment = require('../models/Appointment');
 const Prescription = require('../models/Prescription')
-router.get('/' , async (req,res)=>{
+router.get('/', async (req, res) => {
+  try {
     const patients = await Patient.findAll({
-        include: [{model:Doctor, attributes:['name','specialization', 'phoneNo']}]
+      include: [{ model: Doctor, attributes: ['name', 'specialization', 'phoneNo'] }]
     });
     res.json(patients);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
-
 router.post('/signup' , async(req,res)=>{try {
     const newpatient = await Patient.create({
         fname: req.body.fname,
