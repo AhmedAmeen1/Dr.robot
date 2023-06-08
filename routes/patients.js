@@ -8,7 +8,12 @@ router.get('/' , async (req,res)=>{
     const patients = await Patient.findAll({
         include: [{model:Doctor, attributes:['name','specialization', 'phoneNo']}]
     });
-    res.json(patients);
+
+    try {
+      res.json(patients);
+    } catch (error) {
+      res.status(400).json(error)
+    }
 });
 
 router.post('/signup' , async(req,res)=>{try {
