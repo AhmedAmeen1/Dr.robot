@@ -7,7 +7,7 @@ const Prescription = require('../models/Prescription')
 router.get('/' , async (req,res)=>{
     const patients = await Patient.findAll({
         include: [{model:Doctor, attributes:['name','specialization', 'phoneNo']}]
-    }).then(pats =>{res.json(pats)}).catch(e =>{res.json(e)});
+    });
     res.json(patients);
 });
 
@@ -99,14 +99,9 @@ router.delete('/:id', async (req, res) => {
 
 router.get('/:id/prescriptions', async (req,res)=>{
   const patientId = req.params.id;
-  try {
-    const patient = await Patient.findByPk(patientId);
-    const PatientPrescription = await Prescription.findAll({where:{patientId:patient.id},
-       include:[{ model: Patient,attributes:{exclude:['password', 'address']}}]});
-    res.status(200).json(PatientPrescription);
-  } catch (error) {
-    res.status(400).json(error)
-  }
+  const patient = await Patient.findByPk(patientId);
+  const PatientPrescription = await Prescription.findAll({where:{patientId:req.params.id}});
+  res.status(200).json(PatientPrescription);
 })
 
 
