@@ -101,7 +101,9 @@ router.get('/:id/prescriptions', async (req,res)=>{
   const patientId = req.params.id;
   try {
     const patient = await Patient.findByPk(patientId);
-    const PatientPrescription = await Prescription.findAll({where:{patientId:patient.id}});
+    const PatientPrescription = await Prescription.findAll({where:{patientId:patient.id},
+       include:[{ model: Patient,attributes:{exclude:['password', 'address']}}]
+      });
     res.status(200).json(PatientPrescription);
   } catch (error) {
     res.status(400).json(error)
