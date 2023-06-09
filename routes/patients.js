@@ -128,7 +128,7 @@ router.put('/:id', async (req, res) => {
       Reviewed_devices,
     });
 
-     res.status(200).json(patient);
+     res.status(200).json("Update successful");
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal server error' });
