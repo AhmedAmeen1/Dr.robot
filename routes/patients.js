@@ -62,22 +62,78 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
-  router.put('/:id', async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { name, email, password, phoneNo, gender,age, nationalnumber, address } = req.body;
-      const [updatedRows] = await Patient.update({ name, email, password, phoneNo, gender,age, nationalnumber, address }, { where: { id } });
-      if (updatedRows) {
-        const updatedUser = await Patient.findByPk(id);
-        res.json(updatedUser);
-      } else {
-        res.status(404).json({ message: 'patient not found' });
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
+// Update a patient record
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const {
+    fname,
+    lname,
+    phoneNo,
+    age,
+    gender,
+    email,
+    password,
+    nationalnumber,
+    address,
+    medicalHistory,
+    bloodType,
+    BloodPressure,
+    Diabetes,
+    Allergic,
+    Surgery,
+    Cancer,
+    Pregnant,
+    Smoker,
+    temperature,
+    X_Ray_done,
+    Analysis_done,
+    Medicine_done,
+    Serum_done,
+    Reviewed_devices,
+  } = req.body;
+
+  try {
+    // Find the patient record by ID
+    const patient = await Patient.findByPk(id);
+
+    if (!patient) {
+      return res.status(404).json({ error: 'Patient not found' });
     }
-  });
+
+    // Update the patient record with new values
+    await patient.update({
+      fname,
+      lname,
+      phoneNo,
+      age,
+      gender,
+      email,
+      password,
+      nationalnumber,
+      address,
+      medicalHistory,
+      bloodType,
+      BloodPressure,
+      Diabetes,
+      Allergic,
+      Surgery,
+      Cancer,
+      Pregnant,
+      Smoker,
+      temperature,
+      X_Ray_done,
+      Analysis_done,
+      Medicine_done,
+      Serum_done,
+      Reviewed_devices,
+    });
+
+    return res.json(patient);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
   router.get('/:id/appointments', async (req, res) => {
@@ -103,7 +159,9 @@ router.delete('/:id', async (req, res) => {
 router.get('/:id/prescriptions', async (req,res)=>{
   const patientId = req.params.id;
   const patient = await Patient.findByPk(patientId);
-  const PatientPrescription = await Prescription.findAll({where:{patientId:req.params.id}});
+  const PatientPrescription = await Prescription.findAll({where:{patientId:req.params.id},
+    include:[{ model: Patient,attributes:{exclude:['password', 'address']}}]
+  });
   res.status(200).json(PatientPrescription);
 })
 
