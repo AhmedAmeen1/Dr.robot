@@ -38,7 +38,7 @@ router.post('/signup' , async(req,res)=>{try {
     
     
     })
-    res.json("registration successful")
+    res.status(200).json("registration successful")
 } catch (error) {
     console.error(error);
     res.status(401).json(`error:${error}`)
@@ -128,7 +128,7 @@ router.put('/:id', async (req, res) => {
       Reviewed_devices,
     });
 
-    return res.json(patient);
+     res.status(200).json(patient);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal server error' });
