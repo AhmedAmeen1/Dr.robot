@@ -24,7 +24,8 @@ const Doctor = sequelize.define('doctor',{
     specialization: DataTypes.STRING,
     image: DataTypes.STRING,
     rate: DataTypes.FLOAT,
-    fees: DataTypes.STRING
+    fees: DataTypes.STRING,
+    availableFrom: DataTypes.STRING,
 }, { timestamps: false }
 )
 
