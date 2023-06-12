@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
        doctorId: req.body.doctorId,
      })
      .then(prescription => {
-       res.json(prescription);
+       res.status(200).json("add medicine successful");
      })
      .catch(err => {
        res.status(500).send(err);
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         { model: Doctor,attributes: ['name', 'specialization' , 'phoneNo' ]  }
         ]
      }).then(prescriptions =>{
-      res.json(prescriptions);
+      res.status(200).json(prescriptions);
      }).catch(err =>{
       res.status(500).send(err);
     })
