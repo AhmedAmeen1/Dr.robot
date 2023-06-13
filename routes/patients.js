@@ -40,8 +40,7 @@ router.post('/signup' , async(req,res)=>{try {
     })
     res.status(200).json("registration successful")
 } catch (error) {
-    console.error(error);
-    res.status(401).json(`error:${error}`)
+    res.status(401).json(`Validation error:${error}`)
 }
 
 });

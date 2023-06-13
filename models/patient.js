@@ -11,26 +11,52 @@ const Patient = sequelize.define('patient',{
     fname:{
         type:DataTypes.STRING,
         validate:{
-            max:150
+            max:150,
+            allowNull:false,
         }
     },
     lname:{
         type:DataTypes.STRING,
         validate:{
-            max:150
+            max:150,
+            allowNull:false,
         }
     },
     phoneNo:{
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull:false,
     },
-    age: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.TEXT,
-    nationalnumber: DataTypes.STRING,
-    address: DataTypes.TEXT,
+    age:{
+        type:DataTypes.STRING,
+        allowNull:false,
+    },
+    gender:{
+        type:DataTypes.STRING,
+        allowNull:false,
+    },
+
+    email: {
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    password: {
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    nationalnumber: {
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    address: {
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    bloodType: {
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+
     medicalHistory: DataTypes.STRING,
-    bloodType: DataTypes.STRING,
     BloodPressure: DataTypes.BOOLEAN,
     Diabetes: DataTypes.BOOLEAN,
     Allergic: DataTypes.BOOLEAN,
