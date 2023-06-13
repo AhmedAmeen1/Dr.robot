@@ -21,7 +21,7 @@ const Patient = sequelize.define('patient',{
         }
     },
     phoneNo:{
-        type:DataTypes.INTEGER
+        type:DataTypes.STRING
     },
     age: DataTypes.STRING,
     gender: DataTypes.STRING,
