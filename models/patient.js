@@ -23,11 +23,11 @@ const Patient = sequelize.define('patient',{
     phoneNo:{
         type:DataTypes.INTEGER
     },
-    age: DataTypes.INTEGER,
+    age: DataTypes.STRING,
     gender: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.TEXT,
-    nationalnumber: DataTypes.INTEGER,
+    nationalnumber: DataTypes.STRING,
     address: DataTypes.TEXT,
     medicalHistory: DataTypes.STRING,
     bloodType: DataTypes.STRING,
