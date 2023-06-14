@@ -71,7 +71,7 @@ const Patient = sequelize.define('patient',{
     Medicine_done: DataTypes.BOOLEAN,
     Serum_done: DataTypes.BOOLEAN,
     Reviewed_devices: DataTypes.BOOLEAN,
-    
+    ambient_temperature: DataTypes.INTEGER,
 }, { timestamps: false }
  );
 
