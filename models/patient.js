@@ -44,7 +44,7 @@ const Patient = sequelize.define('patient',{
         allowNull:false
     },
     nationalnumber: {
-        type:DataTypes.INTEGER,
+        type:DataTypes.STRING,
         allowNull:false
     },
     address: {
