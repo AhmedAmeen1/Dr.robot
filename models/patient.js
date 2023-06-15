@@ -7,20 +7,19 @@ const Patient = sequelize.define('patient',{
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull:false,
     },
     fname:{
         type:DataTypes.STRING,
+        allowNull:false,
         validate:{
             max:150,
-            allowNull:false,
         }
     },
     lname:{
         type:DataTypes.STRING,
+        allowNull:false,
         validate:{
             max:150,
-            allowNull:false,
         }
     },
     phoneNo:{
@@ -45,7 +44,7 @@ const Patient = sequelize.define('patient',{
         allowNull:false
     },
     nationalnumber: {
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull:false
     },
     address: {
